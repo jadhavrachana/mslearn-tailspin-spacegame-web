@@ -49,8 +49,12 @@ steps:
   parameters:
     buildConfiguration: 'Release'
 
-- task: PublishBuildArtifacts@1
-  displayName: 'Publish Artifact: drop'
+- task: NuGetCommand@2
+  displayName: 'Publish NuGet package'
+  inputs:
+    command: push
+    publishVstsFeed: 'Lab1-Lab 2/Tailspin.SpaceGame.Web.Models'
+    allowPackageConflicts: true
   condition: succeeded()
   
   
