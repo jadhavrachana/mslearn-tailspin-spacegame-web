@@ -48,11 +48,11 @@ steps:
   parameters:
     buildConfiguration: 'Release'
 
-- task: NuGetCommand@2
+task: NuGetCommand@2
   displayName: 'Publish NuGet package'
   inputs:
     command: push
-    publishVstsFeed: 'Assignment2/Tailspin.SpaceGame.Web.Models'
+    publishVstsFeed: 'Assignment2/sample'
     allowPackageConflicts: true
   condition: succeeded()
   
