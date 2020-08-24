@@ -49,8 +49,14 @@ steps:
     buildConfiguration: 'Release'
 - task: NuGetCommand@2
   inputs:
-    command: 'restore'
-    restoreSolution: '**/*.csproj'
-    feedsToUse: 'select'
-    vstsFeed: '4d5bbf49-d6ac-48cd-9b92-58d01ae861ed/3a0bfadb-062c-4476-b70e-77d7c6671504'
+    command: 'pack'
+    packagesToPack: '**/*.csproj'
+    versioningScheme: 'off'
+
+- task: NuGetCommand@2
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    nuGetFeedType: 'internal'
+    publishVstsFeed: '4d5bbf49-d6ac-48cd-9b92-58d01ae861ed/3a0bfadb-062c-4476-b70e-77d7c6671504'
   
