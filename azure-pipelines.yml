@@ -33,13 +33,12 @@ steps:
   displayName: 'Write build info'
   workingDirectory: $(wwwrootDir)
 
-- task: NuGetCommand@2
+- task: DotNetCoreCLI@2
   displayName: 'Restore project dependencies'
   inputs:
     command: 'restore'
-    restoreSolution: '**/*.sln'
-    feedsToUse: 'select'
-    vstsFeed: 'Lab1-Lab 2/Tailspin.SpaceGame.Web.Models'
+    projects: '**/*.csproj'
+
 
 - template: templates/build.yml
   parameters:
@@ -53,7 +52,7 @@ steps:
   displayName: 'Publish NuGet package'
   inputs:
     command: push
-    publishVstsFeed: 'Lab1-Lab 2/Tailspin.SpaceGame.Web.Models'
+    publishVstsFeed: 'Assignment2/Tailspin.SpaceGame.Web.Models'
     allowPackageConflicts: true
   condition: succeeded()
   
